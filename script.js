@@ -1,50 +1,50 @@
 $(document).ready(function(){
 	var testNumLength = function(number) {
         if (number.length > 9) {
-            totaldiv.text(number.substr(number.length-9,9));
+            display.text(number.substr(number.length-9,9));
             if (number.length > 15) {
                 number = "";
-                totaldiv.text("Err");
+                display.text("Err");
             }
         } 
     };
 	var number = "";
-    var newnumber = "";
+    var newNumber = "";
     var operator = "";
-    var totaldiv = $("#total");
-    totaldiv.text("0");
-    $("#numbers a").not("#clear,#clearall").click(function(){
+    var display = $("#display");
+    display.text("0");
+    $("#numbers a").not("#clear,#clearAll").click(function(){
 		number += $(this).text();
-		totaldiv.text(number);
+		display.text(number);
 		testNumLength(number);
     });
     $("#operators a").not("#equals").click(function(){
 		operator = $(this).text();
-		newnumber = number;
+		newNumber = number;
 		number = "";
-		totaldiv.text(operator);
+		display.text(operator);
     });
-    $("#clear,#clearall").click(function(){
+    $("#clear,#clearAll").click(function(){
 		number = "";
-		totaldiv.text("0");
-		if ($(this).attr("id") === "clearall") {
-			newnumber = "";
+		display.text("0");
+		if ($(this).attr("id") === "clearAll") {
+			newNumber = "";
 		}
     });
     $("#equals").click(function(){
 		var answer;
         if (operator === "+"){
-			answer = parseInt(number) + parseInt(newnumber);
+			answer = parseInt(number) + parseInt(newNumber);
 		} else if (operator === "-"){
-			answer = parseInt(newnumber) - parseInt(number);
+			answer = parseInt(newNumber) - parseInt(number);
 		} else if (operator === "/"){
-			answer = parseInt(newnumber) / parseInt(number);
+			answer = parseInt(newNumber) / parseInt(number);
 		} else if (operator === "*"){
-			answer = parseInt(number) * parseInt(newnumber);
+			answer = parseInt(number) * parseInt(newNumber);
 		}
-		totaldiv.text(answer);
+		display.text(answer);
 		testNumLength(answer);
 		number = "";
-		newnumber = "";
+		newNumber = "";
     });
 });
